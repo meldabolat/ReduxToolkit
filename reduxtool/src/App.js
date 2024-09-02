@@ -11,11 +11,13 @@ function App() {
 
   return (
     <div className="App">
+
       <span onClick={decrement}>-</span>
       <span>{counter}</span>
       
       <span onClick={increment}>+</span>
        </div>
+
   );
 }
 
