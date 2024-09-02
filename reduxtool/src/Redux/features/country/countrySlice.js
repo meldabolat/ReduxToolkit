@@ -1,20 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 const initialState = {
     country :[]
 }
-
+export const getCountry = createAsyncThunk('getCountry', async() =>{ 
+    const data = await axios.get('https://restcountries.com/v3.1/all')
+    return data
+})
 export const countrySlice =createSlice ({
     name: "country",
     initialState,
     reducers :{
-        getCountry : async(state) =>{
-            const {data}= await axios.get('https://restcountries.com/v3.1/all')
-            console.log("data",data)
-            state.country = data
-        }
+     
+    },
+    extraReducers: (builder)=> {
+        builder.addCase(getCountry.fulfilled, (state,action)=>{
+            state.country = action.payload
+        })
+
     }
 })
-export const {getCountry}= countrySlice.actions
 export default countrySlice.reducers
