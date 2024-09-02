@@ -7,8 +7,9 @@ function App() {
   
   // state.counter yerine sadece state.counter
   const counter = useSelector((state) => state.counter);
+  const country = useSelector((state) => state.country);
 
-  console.log(counter);
+  console.log(country);
 
   return (
     <div className="App">
